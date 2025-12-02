@@ -1,0 +1,75 @@
+<%- include("partials/header.ejs") %>
+
+<body>
+
+    <div class="d-flex justify-content-center">
+    <div style="max-width: 600px; width: 100%;">
+
+    <div class="card p-4 main-card">
+
+    <div class="card p-4 mb-4 header-card">
+        <div class="card-body">
+            <h1 class="text-center my-4"> Quote Finder </h1>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <form action="/searchByKeyword">
+            <label>Keyword: </label><br>
+            <input type="text" name="keyword">
+            <button>Search by Keyword</button>
+        </form>
+
+        <br>
+
+        <form action="/searchByAuthor">
+            <label>Author: </label><br>
+            <select name="authorId">
+            <% for (author of authors) { %>
+                <option value="<%=author.authorId%>">
+                    <%=author.firstName%> <%=author.lastName%>
+                </option>
+            <% } %>
+            </select>
+            <button>Search by Author</button>
+        </form>
+
+        <br>
+
+        <form action="/searchByCategory">
+            <label>Category: </label><br>
+            <select name="category">
+            <% for (let c of categories) { %>
+                <option value="<%= c.category %>">
+                <%= c.category %>
+                </option>
+            <% } %>
+            </select>
+            <button>Search by Category</button>
+        </form>
+
+        <br>
+
+        <form action="/searchByLikes">
+            <label>Likes range:</label>
+            <div class="input-group mb-2">
+            <input type="number" name="minLikes" placeholder="Min" class="form-control">
+            <input type="number" name="maxLikes" placeholder="Max" class="form-control">
+            <button>Search by Likes</button>
+            </div>
+        </form>
+      </div>
+    </div>
+
+    </div>
+
+    </div>
+    </div>
+
+
+<%- include("partials/footer.ejs") %>
+
+</body>
+
+</html>
